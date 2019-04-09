@@ -10,7 +10,7 @@ const StatusContext = 'milestone-checker'
 const MilestoneInfo = t.exact(
   t.type({
     id: t.number,
-    url: t.string,
+    html_url: t.string,
     state: t.string,
     title: t.string,
   }),
@@ -104,7 +104,7 @@ function milestoned(bot: Context, pr: IPullRequestInfo, milestone: IMilestoneInf
 
   bot.log(`${msg} for pull request #${pr.id}`)
 
-  return toggleState(bot, pr.head.sha, 'success', msg)
+  return toggleState(bot, pr.head.sha, 'success', msg, some(milestone.html_url))
 }
 
 function demilestoned(bot: Context, pr: IPullRequestInfo): Promise<void> {
@@ -112,10 +112,10 @@ function demilestoned(bot: Context, pr: IPullRequestInfo): Promise<void> {
 
   bot.log(`${msg} for pull request #${pr.id}`)
 
-  return toggleState(bot, pr.head.sha, 'error', msg)
+  return toggleState(bot, pr.head.sha, 'error', msg, none)
 }
 
-function toggleState(bot: Context, sha: string, expectedState: CommitState, msg: string): Promise<void> {
+function toggleState(bot: Context, sha: string, expectedState: CommitState, msg: string, url: Option<string>): Promise<void> {
   return getCommitState(bot, sha, StatusContext).then(state => {
     const alreadySet = state.filter(s => s == expectedState)
 
@@ -129,6 +129,7 @@ function toggleState(bot: Context, sha: string, expectedState: CommitState, msg:
             context: StatusContext,
             state: expectedState,
             description: msg,
+            target_url: url.toUndefined()
           }),
         )
         .then(_r => Promise.resolve())
