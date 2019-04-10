@@ -115,7 +115,13 @@ function demilestoned(bot: Context, pr: IPullRequestInfo): Promise<void> {
   return toggleState(bot, pr.head.sha, 'error', msg, none)
 }
 
-function toggleState(bot: Context, sha: string, expectedState: CommitState, msg: string, url: Option<string>): Promise<void> {
+function toggleState(
+  bot: Context,
+  sha: string,
+  expectedState: CommitState,
+  msg: string,
+  url: Option<string>,
+): Promise<void> {
   return getCommitState(bot, sha, StatusContext).then(state => {
     const alreadySet = state.filter(s => s == expectedState)
 
@@ -129,7 +135,7 @@ function toggleState(bot: Context, sha: string, expectedState: CommitState, msg:
             context: StatusContext,
             state: expectedState,
             description: msg,
-            target_url: url.toUndefined()
+            target_url: url.toUndefined(),
           }),
         )
         .then(_r => Promise.resolve())
@@ -138,17 +144,15 @@ function toggleState(bot: Context, sha: string, expectedState: CommitState, msg:
 }
 
 function getCommitState(bot: Context, ref: string, ctx: string): Promise<Option<string>> {
-  return bot.github.repos
-    .listStatusesForRef(bot.repo({ ref }))
-    .then(resp => {
-      const found = resp.data.find(s => s.context == ctx)
+  return bot.github.repos.listStatusesForRef(bot.repo({ ref })).then(resp => {
+    const found = resp.data.find(s => s.context == ctx)
 
-      if (!found) {
-        return Promise.resolve(none)
-      } else {
-        return Promise.resolve(some(found.state))
-      }
-    })
+    if (!found) {
+      return Promise.resolve(none)
+    } else {
+      return Promise.resolve(some(found.state))
+    }
+  })
 }
 
 // IO-TS utility
