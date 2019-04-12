@@ -17,6 +17,8 @@ npm run build
 npm start
 ```
 
+[![CircleCI](https://circleci.com/gh/zengularity/probot-pr-milestone.svg?style=svg)](https://circleci.com/gh/zengularity/probot-pr-milestone)
+
 ## Contributing
 
 If you have suggestions for how this application could be improved, or want to report a bug, open an issue! We'd love all and any contributions.
@@ -25,4 +27,4 @@ For more, check out the [Contributing Guide](CONTRIBUTING.md).
 
 ## License
 
-[ISC](LICENSE) © 2019 Zengularity (https://github.com/zengularity/pr-milestone-checker)
+[ISC](LICENSE) © 2019 Zengularity (https://github.com/zengularity/probot-pr-milestone)

@@ -10,7 +10,7 @@ default_permissions:
 name: pr-milestone-checker
 
 # The homepage of your GitHub App.
-url: https://github.com/zengularity/pr-milestone-checker
+url: https://github.com/zengularity/probot-pr-milestone
 
 # A description of the GitHub App.
 description: Probot application that checks each pull request is tagged with a GitHub milestone

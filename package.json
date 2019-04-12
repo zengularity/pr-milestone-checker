@@ -1,12 +1,12 @@
 {
-  "name": "pr-milestone-checker",
+  "name": "probot-pr-milestone",
   "version": "1.0.0-SNAPSHOT",
   "description": "Check that all the pull requests are tagged with a GitHub milestone",
   "author": "cchantep (https://github.com/cchantep)",
   "license": "ISC",
-  "repository": "https://github.com/zengularity/pr-milestone-checker.git",
-  "homepage": "https://github.com/zengularity/pr-milestone-checker",
-  "bugs": "https://github.com/zengularity/pr-milestone-checker/issues",
+  "repository": "https://github.com/zengularity/probot-pr-milestone.git",
+  "homepage": "https://github.com/zengularity/probot-pr-milestone",
+  "bugs": "https://github.com/zengularity/probot-pr-milestone/issues",
   "keywords": [
     "probot",
     "github",

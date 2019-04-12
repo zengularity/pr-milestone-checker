@@ -6,6 +6,7 @@
     "tslint-config-prettier"
   ],
   "rules": {
+    "strict-boolean-expressions": true,
     "comment-format": false,
     "completed-docs": false,
     "file-name-casing": false,
