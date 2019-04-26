@@ -104,7 +104,9 @@ function milestoned(bot: Context, pr: IPullRequestInfo, milestone: IMilestoneInf
 
   bot.log(`${msg} for pull request #${pr.id}`)
 
-  return toggleState(bot, pr.head.sha, 'success', msg, some(milestone.html_url))
+  return toggleState(bot, pr.head.sha, 'success', msg, some(milestone.html_url), current =>
+    current.exists(s => s != 'success'), // TODO: Config to always set, default: false
+  )
 }
 
 function demilestoned(bot: Context, pr: IPullRequestInfo): Promise<void> {
@@ -112,7 +114,7 @@ function demilestoned(bot: Context, pr: IPullRequestInfo): Promise<void> {
 
   bot.log(`${msg} for pull request #${pr.id}`)
 
-  return toggleState(bot, pr.head.sha, 'error', msg, none)
+  return toggleState(bot, pr.head.sha, 'error', msg, none, current => !current.exists(s => s == 'error'))
 }
 
 function toggleState(
@@ -121,11 +123,10 @@ function toggleState(
   expectedState: CommitState,
   msg: string,
   url: Option<string>,
+  mustSet: (s: Option<string>) => boolean,
 ): Promise<void> {
   return getCommitState(bot, sha, StatusContext).then(state => {
-    const alreadySet = state.filter(s => s == expectedState)
-
-    if (!alreadySet) {
+    if (!mustSet(state)) {
       return Promise.resolve()
     } else {
       return bot.github.repos

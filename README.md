@@ -2,7 +2,13 @@
 
 > A GitHub App built with [Probot](https://github.com/probot/probot) that checks that all the pull requests are tagged with a GitHub milestone.
 
+## Usage
+
+When a pull request is created/updated, this application checks whether it is properly [milestoned](https://help.github.com/en/articles/about-milestones).
+
 ![Usage](./docs/img/usage.gif)
+
+> By default status is only set when the milestone is/was missing.
 
 ## Setup
 
