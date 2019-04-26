@@ -104,8 +104,13 @@ function milestoned(bot: Context, pr: IPullRequestInfo, milestone: IMilestoneInf
 
   bot.log(`${msg} for pull request #${pr.id}`)
 
-  return toggleState(bot, pr.head.sha, 'success', msg, some(milestone.html_url), current =>
-    current.exists(s => s != 'success'), // TODO: Config to always set, default: false
+  return toggleState(
+    bot,
+    pr.head.sha,
+    'success',
+    msg,
+    some(milestone.html_url),
+    current => current.exists(s => s != 'success'), // TODO: Config to always set, default: false
   )
 }
 
