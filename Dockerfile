@@ -6,4 +6,4 @@ COPY . .
 RUN npm install && npm run build
 
 ENTRYPOINT ["probot", "receive"]
-CMD ["/lib/index.js"]
+CMD ["/app/lib/index.js"]
