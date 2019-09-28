@@ -10,6 +10,21 @@ When a pull request is created/updated, this application checks whether it is pr
 
 > By default status is only set when the milestone is/was missing.
 
+To use this bot with [GitHub Actions](https://github.com/features/actions), the following workflow can be defined as `.github/workflows/pr-milestone-checker.yml` in your repository.
+
+```
+name: PR milestone
+on: [issues, pull_request]
+
+jobs:
+  check_pr_milestone:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: zengularity/pr-milestone-checker@ghaction-1.0.x
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
 ## Setup
 
 ```sh

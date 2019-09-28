@@ -1,6 +1,6 @@
 {
   "name": "probot-pr-milestone",
-  "version": "1.0.0-SNAPSHOT",
+  "version": "1.0.0",
   "description": "Check that all the pull requests are tagged with a GitHub milestone",
   "author": "cchantep (https://github.com/cchantep)",
   "license": "ISC",
