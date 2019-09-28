@@ -1,0 +1,20 @@
+default_events:
+- issues
+- pull_request
+
+default_permissions:
+  issues: read
+  pull_requests: read
+  statuses: write
+
+name: pr-milestone-checker
+
+# The homepage of your GitHub App.
+url: https://github.com/zengularity/probot-pr-milestone
+
+# A description of the GitHub App.
+description: Probot application that checks each pull request is tagged with a GitHub milestone
+
+# Set to true when your GitHub App is available to the public or false when it is only accessible to the owner of the app.
+# Default: true
+# public: false
