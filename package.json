@@ -34,7 +34,7 @@
     "nodemon": "^1.17.2",
     "smee-client": "^1.0.2",
     "nock": "^11.3.5",
-    "@types/nock": "^9.3.0",
+    "@types/nock": "^11.1.0",
     "ts-jest": "^24.0.0",
     "jest-junit": "^8.0.0",
     "typescript": "^3.3.1",
