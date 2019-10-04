@@ -14,7 +14,12 @@ To use this bot with [GitHub Actions](https://github.com/features/actions), the 
 
 ```
 name: PR milestone
-on: [issues, pull_request]
+
+on: 
+  issues:
+    types: ['milestoned', 'demilestoned']
+  pull_request:
+    types: ['opened', 'edited', 'synchronize']
 
 jobs:
   check_pr_milestone:
