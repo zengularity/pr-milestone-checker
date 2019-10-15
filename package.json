@@ -1,6 +1,6 @@
 {
   "name": "probot-pr-milestone",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Check that all the pull requests are tagged with a GitHub milestone",
   "author": "cchantep (https://github.com/cchantep)",
   "license": "ISC",
@@ -23,7 +23,7 @@
     "test:watch": "jest --watch --notify --notifyMode=change --coverage"
   },
   "dependencies": {
-    "probot": "^7.2.0",
+    "probot": "^9.5.3",
     "io-ts": "^1.8.5"
   },
   "devDependencies": {
