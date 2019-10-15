@@ -54,7 +54,7 @@ export = (app: Application) => {
     if (!event.pull_request) {
       context.log(`Not a pull request issue: #${event.id}`)
     } else {
-      const resp = await context.github.pullRequests.get(
+      const resp = await context.github.pulls.get(
         context.repo({
           number: issue.number,
         }),
@@ -74,7 +74,7 @@ export = (app: Application) => {
     if (!event.pull_request) {
       context.log(`Not a pull request issue: #${event.id}`)
     } else {
-      const resp = await context.github.pullRequests.get(
+      const resp = await context.github.pulls.get(
         context.repo({
           number: issue.number,
         }),
