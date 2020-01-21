@@ -37,7 +37,7 @@ type IPullRequestInfo = t.TypeOf<typeof PullRequestInfo>
 const IssueInfo = t.exact(
   t.type({
     id: t.number,
-    number: t.number,
+    pull_number: t.number,
     pull_request: t.union([t.any, t.undefined, t.null]),
   }),
 )
@@ -56,7 +56,7 @@ export = (app: Application) => {
     } else {
       const resp = await context.github.pulls.get(
         context.repo({
-          number: issue.number,
+          pull_number: issue.number,
         }),
       )
       const pr: IPullRequestInfo = await fromEither(PullRequestInfo.decode(resp.data))
@@ -76,7 +76,7 @@ export = (app: Application) => {
     } else {
       const resp = await context.github.pulls.get(
         context.repo({
-          number: issue.number,
+          pull_number: issue.number,
         }),
       )
       const pr: IPullRequestInfo = await fromEither(PullRequestInfo.decode(resp.data))
@@ -164,5 +164,8 @@ function getCommitState(bot: Context, ref: string, ctx: string): Promise<Option<
 // IO-TS utility
 
 function fromEither<T>(e: either.Either<t.Errors, T>): Promise<T> {
-  return e.fold(cause => Promise.reject(new Error(JSON.stringify(cause))), res => Promise.resolve(res))
+  return e.fold(
+    cause => Promise.reject(new Error(JSON.stringify(cause))),
+    res => Promise.resolve(res),
+  )
 }
